@@ -8,9 +8,7 @@ pub fn parse_file(path: &PathBuf) -> Vec<PointType> {
   let contents = std::fs::read_to_string(path).unwrap();
   let points_size = contents.lines().next().unwrap().parse::<i32>().unwrap();
   let atributes_size = contents.lines().nth(1).unwrap().parse::<i32>().unwrap();
-  println!("First line: {}", points_size);
-  println!("Second line: {}", atributes_size);
-  for line in contents.lines().skip(2) {
+  for line in contents.lines().skip(2).take(points_size as usize) {
     let coords: Vec<f32> = line.split_whitespace()
         .map(|s| s.replace(",", ".")
         .parse::<f32>().unwrap())
