@@ -2,12 +2,13 @@ use std::path::PathBuf;
 
 use crate::points::{Point2d, Point3d, PointType};
 use crate::points::Point;
+use crate::mdp_problem::MDPProblem;
 
-pub fn parse_file(path: &PathBuf) -> Vec<PointType> {
+pub fn parse_file(path: &PathBuf) -> MDPProblem {
   let mut points: Vec<PointType> = Vec::new();
   let contents = std::fs::read_to_string(path).unwrap();
   let points_size = contents.lines().next().unwrap().parse::<i32>().unwrap();
-  let atributes_size = contents.lines().nth(1).unwrap().parse::<i32>().unwrap();
+  let atributes_size = contents.lines().nth(1).unwrap().parse::<u8>().unwrap();
   for line in contents.lines().skip(2).take(points_size as usize) {
     let coords: Vec<f32> = line.split_whitespace()
       .map(|s| 
@@ -20,5 +21,6 @@ pub fn parse_file(path: &PathBuf) -> Vec<PointType> {
       _ => panic!("Invalid number of atributes")
     }
   }
-  points
+  let mdp_problem = MDPProblem::new(points, atributes_size);
+  mdp_problem
 }
