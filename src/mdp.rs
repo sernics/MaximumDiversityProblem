@@ -1,6 +1,9 @@
+use crate::mdp_problem::MDPProblem;
+use crate::mdp_solution::MDPSolution;
+
 pub trait mdp {
-  fn new(states: Vec<PointType>, points: u8) -> Self;
+  fn new(problem: MDPProblem, size_m: u8) -> Self;
   // fn states(&self) -> &Vec<PointType>;
   // fn points(&self) -> u8;
-  fn centroid(&self) -> PointType;
+  fn execute(&mut self) -> &MDPSolution;
 }

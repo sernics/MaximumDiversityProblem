@@ -20,6 +20,9 @@ impl MDPProblem {
   pub fn initial_point(&self) -> &PointType {
     self.states.iter().max_by(|a, b| a.distance().partial_cmp(&b.distance()).unwrap()).unwrap()
   }
+  pub fn next_point(&self, state: &PointType) -> PointType {
+    self.states.iter().max_by(|a, b| state.distance_euclidean(a).partial_cmp(&state.distance_euclidean(b)).unwrap()).unwrap().copy()
+  }
 }
 
 impl Index<usize> for MDPProblem {

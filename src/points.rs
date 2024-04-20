@@ -3,6 +3,7 @@ use std::ops::Index;
 pub trait Point {
   fn new(coords: Vec<f32>) -> Self;
   fn dimensions(&self) -> usize;
+  fn copy(&self) -> Self;
   fn distance(&self) -> f32;
   fn distance_euclidean(&self, other: &Self) -> f32;
 }
@@ -36,6 +37,9 @@ impl Point for Point2d {
   fn distance_euclidean(&self, other: &Self) -> f32 {
     ((self.x - other.x).powi(2) + (self.y - other.y).powi(2)).sqrt()
   }
+  fn copy(&self) -> Self {
+    Point2d { x: self.x, y: self.y }
+  }
 }
 
 impl Index<usize> for Point2d {
@@ -61,6 +65,9 @@ impl Point for Point3d {
   }
   fn distance_euclidean(&self, other: &Self) -> f32 {
     ((self.x - other.x).powi(2) + (self.y - other.y).powi(2) + (self.z - other.z).powi(2)).sqrt()
+  }
+  fn copy(&self) -> Self {
+    Point3d { x: self.x, y: self.y, z: self.z }
   }
 }
 
@@ -103,6 +110,12 @@ impl Point for PointType {
       _ => panic!("Invalid number of coordinates")
     }
   }
+  fn copy(&self) -> Self {
+    match self {
+      PointType::Point2d(p) => PointType::Point2d(p.copy()),
+      PointType::Point3d(p) => PointType::Point3d(p.copy())
+    }
+  }
 }
 
 impl std::fmt::Display for Point2d {
@@ -122,6 +135,16 @@ impl std::fmt::Display for PointType {
     match self {
       PointType::Point2d(p) => write!(f, "{}", p),
       PointType::Point3d(p) => write!(f, "{}", p)
+    }
+  }
+}
+
+impl Index<usize> for PointType {
+  type Output = f32;
+  fn index(&self, index: usize) -> &f32 {
+    match self {
+      PointType::Point2d(p) => p.index(index),
+      PointType::Point3d(p) => p.index(index)
     }
   }
 }
