@@ -15,5 +15,6 @@ fn main() {
   println!("{}", points);
   const SIZE_M: u8 = 3;
   let mut greedy = mdp_greedy::MDPGreedy::new(points, SIZE_M);
-  println!("{}", greedy.execute());
+  let result = greedy.execute();
+  println!("{}", result);
 }

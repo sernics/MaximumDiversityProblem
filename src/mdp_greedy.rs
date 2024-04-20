@@ -17,7 +17,8 @@ impl MDP for MDPGreedy {
     self.mdp_solution.insert(initial_point.copy());
     while self.mdp_solution.len() < self.size_m as usize {
       let centroid = self.mdp_solution.centroids();
-      self.mdp_solution.insert(self.mdp_solution.mdp_problem().next_point(&centroid));
+      let selected = self.mdp_solution.mdp_problem().next_point(&centroid);
+      self.mdp_solution.insert(selected.copy());
     }
     return &self.mdp_solution
   }
