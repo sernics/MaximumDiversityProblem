@@ -6,7 +6,7 @@ mod mdp_greedy;
 mod mdp;
 
 use crate::mdp_problem::MDPProblem;
-use crate::mdp::mdp as MDP;
+use crate::mdp::MDP;
 
 fn main() {
   let path = std::path::PathBuf::from(

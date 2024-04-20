@@ -24,7 +24,7 @@ impl MDPSolution {
   }
   pub fn centroids(&self) -> PointType {
     let mut values : Vec<f32> = vec![];
-    for i in 0..3 {
+    for i in 0..self.mdp_problem().points() as usize {
       let mut sum = 0.0;
       for point in &self.solution {
         sum += point[i];
