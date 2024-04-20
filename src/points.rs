@@ -3,6 +3,8 @@ use std::ops::Index;
 pub trait Point {
   fn new(coords: Vec<f32>) -> Self;
   fn dimensions(&self) -> usize;
+  fn distance(&self) -> f32;
+  fn distance_euclidean(&self, other: &Self) -> f32;
 }
 
 pub struct Point2d {
@@ -28,6 +30,12 @@ impl Point for Point2d {
   fn dimensions(&self) -> usize {
     2
   }
+  fn distance(&self,) -> f32 {
+    (self.x.powi(2) + self.y.powi(2)).sqrt()
+  }
+  fn distance_euclidean(&self, other: &Self) -> f32 {
+    ((self.x - other.x).powi(2) + (self.y - other.y).powi(2)).sqrt()
+  }
 }
 
 impl Index<usize> for Point2d {
@@ -47,6 +55,12 @@ impl Point for Point3d {
   }
   fn dimensions(&self) -> usize {
     3
+  }
+  fn distance(&self) -> f32 {
+    (self.x.powi(2) + self.y.powi(2) + self.z.powi(2)).sqrt()
+  }
+  fn distance_euclidean(&self, other: &Self) -> f32 {
+    ((self.x - other.x).powi(2) + (self.y - other.y).powi(2) + (self.z - other.z).powi(2)).sqrt()
   }
 }
 
@@ -74,6 +88,19 @@ impl Point for PointType {
     match self {
       PointType::Point2d(p) => p.dimensions(),
       PointType::Point3d(p) => p.dimensions()
+    }
+  }
+  fn distance(&self) -> f32 {
+    match self {
+      PointType::Point2d(p) => p.distance(),
+      PointType::Point3d(p) => p.distance()
+    }
+  }
+  fn distance_euclidean(&self, other: &Self) -> f32 {
+    match (self, other) {
+      (PointType::Point2d(p1), PointType::Point2d(p2)) => p1.distance_euclidean(p2),
+      (PointType::Point3d(p1), PointType::Point3d(p2)) => p1.distance_euclidean(p2),
+      _ => panic!("Invalid number of coordinates")
     }
   }
 }

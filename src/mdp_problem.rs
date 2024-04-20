@@ -1,5 +1,6 @@
-use crate::points::PointType;
 use std::ops::Index;
+
+use crate::points::{Point, PointType};
 
 pub struct MDPProblem {
   states: Vec<PointType>,
@@ -15,6 +16,9 @@ impl MDPProblem {
   }
   pub fn points(&self) -> u8 {
     self.points
+  }
+  pub fn initial_point(&self) -> &PointType {
+    self.states.iter().max_by(|a, b| a.distance().partial_cmp(&b.distance()).unwrap()).unwrap()
   }
 }
 
