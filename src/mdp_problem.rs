@@ -11,9 +11,6 @@ impl MDPProblem {
   pub fn new(states: Vec<PointType>, points: u8) -> Self {
     MDPProblem { states, points }
   }
-  pub fn states(&self) -> &Vec<PointType> {
-    &self.states
-  }
   pub fn points(&self) -> u8 {
     self.points
   }

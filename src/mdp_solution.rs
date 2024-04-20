@@ -16,9 +16,6 @@ impl MDPSolution {
   pub fn mdp_problem(&self) -> &MDPProblem {
     &self.mdp_problem
   }
-  pub fn solution(&self) -> &Vec<PointType> {
-    &self.solution
-  }
   pub fn insert(&mut self, point: PointType) {
     self.solution.push(point)
   }
