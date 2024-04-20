@@ -13,16 +13,16 @@ impl MDP for MDPGreedy {
     MDPGreedy { mdp_solution: MDPSolution::new(problem), size_m }
   }
   fn execute(&mut self) -> &MDPSolution {
-    let initial_point = self.mdp_solution.mdp_problem().initial_point();
-    self.mdp_solution.insert(initial_point.copy());
+    self.mdp_solution.insert(self.mdp_solution.mdp_problem().initial_point().copy());
     while self.mdp_solution.len() < self.size_m as usize {
       let centroid = self.mdp_solution.centroids();
       let selected = self.mdp_solution.mdp_problem().next_point(&centroid);
-      self.mdp_solution.insert(selected.copy());
+      if !self.mdp_solution.contains(&selected) {
+        self.mdp_solution.insert(selected.copy());
+      } else {
+        break;
+      }
     }
-    return &self.mdp_solution
+    return &self.mdp_solution;
   }
 }
-
-
-

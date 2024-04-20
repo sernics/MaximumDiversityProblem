@@ -148,3 +148,13 @@ impl Index<usize> for PointType {
     }
   }
 }
+
+impl PartialEq for PointType {
+  fn eq(&self, other: &Self) -> bool {
+    match (self, other) {
+      (PointType::Point2d(p1), PointType::Point2d(p2)) => p1.x == p2.x && p1.y == p2.y,
+      (PointType::Point3d(p1), PointType::Point3d(p2)) => p1.x == p2.x && p1.y == p2.y && p1.z == p2.z,
+      _ => false
+    }
+  }
+}

@@ -13,6 +13,9 @@ impl MDPSolution {
   pub fn len(&self) -> usize {
     self.solution.len()
   }
+  pub fn contains(&self, point: &PointType) -> bool {
+    self.solution.contains(point)
+  }
   pub fn mdp_problem(&self) -> &MDPProblem {
     &self.mdp_problem
   }
@@ -32,6 +35,17 @@ impl MDPSolution {
       PointType::Point2d(_) => PointType::Point2d(Point2d::new(values)),
       PointType::Point3d(_) => PointType::Point3d(Point3d::new(values)),
     }
+  }
+  pub fn calculate_diversity(&self) -> f32 {
+    let mut sum = 0.0;
+    for i in 0..self.solution.len() {
+      for j in 0..self.solution.len() {
+        if i != j {
+          sum += self.solution[i].distance_euclidean(&self.solution[j]);
+        }
+      }
+    }
+    sum / (self.solution.len() * (self.solution.len() - 1)) as f32
   }
 }
 

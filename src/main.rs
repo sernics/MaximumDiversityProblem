@@ -17,4 +17,5 @@ fn main() {
   let mut greedy = mdp_greedy::MDPGreedy::new(points, SIZE_M);
   let result = greedy.execute();
   println!("{}", result);
+  println!("Diversity: {}", result.calculate_diversity());
 }
