@@ -6,4 +6,5 @@ fn main() {
   let path = std::path::PathBuf::from(
     std::env::args().nth(1).expect("No file path provided"));
   let points = parse::parse_file(&path);
+  println!("{}", points);
 }
