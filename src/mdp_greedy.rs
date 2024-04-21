@@ -20,7 +20,19 @@ impl MDP for MDPGreedy {
       if !self.mdp_solution.contains(&selected) {
         self.mdp_solution.insert(selected.copy());
       } else {
-        break;
+        let mut max_diversity = 0.0;
+        let mut selected = self.mdp_solution.mdp_problem().initial_point().copy();
+        for point in self.mdp_solution.mdp_problem().states() {
+          if !self.mdp_solution.contains(point) {
+            let mut actual_solution = self.mdp_solution.clone();
+            actual_solution.insert(point.copy());
+            if actual_solution.calculate_diversity() > max_diversity {
+              max_diversity = actual_solution.calculate_diversity();
+              selected = point.copy();
+            }
+          }
+        }
+        self.mdp_solution.insert(selected);
       }
     }
     return &self.mdp_solution;

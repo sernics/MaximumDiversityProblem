@@ -158,3 +158,12 @@ impl PartialEq for PointType {
     }
   }
 }
+
+impl Clone for PointType {
+  fn clone(&self) -> Self {
+    match self {
+      PointType::Point2d(p) => PointType::Point2d(p.copy()),
+      PointType::Point3d(p) => PointType::Point3d(p.copy())
+    }
+  }
+}

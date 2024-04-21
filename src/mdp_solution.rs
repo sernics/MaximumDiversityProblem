@@ -1,5 +1,6 @@
 use crate::mdp_problem::MDPProblem;
 use crate::points::{Point, Point2d, Point3d, PointType};
+use std::ops::Index;
 
 pub struct MDPSolution {
   mdp_problem: MDPProblem,
@@ -23,9 +24,9 @@ impl MDPSolution {
     self.solution.push(point)
   }
   pub fn centroids(&self) -> PointType {
-    let mut values : Vec<f32> = vec![];
+    let mut values: Vec<f32> = vec![];
     for i in 0..self.mdp_problem().points() as usize {
-      let mut sum = 0.0;
+      let mut sum: f32 = 0.0;
       for point in &self.solution {
         sum += point[i];
       }
@@ -39,13 +40,14 @@ impl MDPSolution {
   pub fn calculate_diversity(&self) -> f32 {
     let mut sum = 0.0;
     for i in 0..self.solution.len() {
-      for j in 0..self.solution.len() {
-        if i != j {
-          sum += self.solution[i].distance_euclidean(&self.solution[j]);
-        }
+      for j in (i + 1)..self.solution.len() {
+        sum += self.solution[i].distance_euclidean(&self.solution[j]);
       }
     }
-    sum / (self.solution.len() * (self.solution.len() - 1)) as f32
+    sum
+  }
+  pub fn swap(&mut self, point: PointType, index: usize) {
+    self.solution[index] = point;
   }
 }
 
@@ -56,5 +58,18 @@ impl std::fmt::Display for MDPSolution {
       writeln!(f, "{}", point)?;
     }
     write!(f, "]")
+  }
+}
+
+impl Clone for MDPSolution {
+  fn clone(&self) -> Self {
+    MDPSolution { mdp_problem: self.mdp_problem.clone(), solution: self.solution.clone() }
+  }
+}
+
+impl Index <usize> for MDPSolution {
+  type Output = PointType;
+  fn index(&self, index: usize) -> &PointType {
+    &self.solution[index]
   }
 }

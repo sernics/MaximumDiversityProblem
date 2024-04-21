@@ -5,7 +5,7 @@ use crate::points::Point;
 use crate::mdp_problem::MDPProblem;
 
 pub fn parse_file(path: &PathBuf) -> MDPProblem {
-  let mut points : Vec<PointType> = Vec::new();
+  let mut points: Vec<PointType> = Vec::new();
   let contents = std::fs::read_to_string(path).unwrap();
   let points_size = contents.lines().next().unwrap().parse::<i32>().unwrap();
   let atributes_size = contents.lines().nth(1).unwrap().parse::<u8>().unwrap();

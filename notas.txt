@@ -3,3 +3,5 @@ Greedy y una estructura de entorno <- martes 23 de abril
 Ya tienes el primer elemento. Ahora lo que tienes que hacer es buscar el siguiente elemento.
 Y tratar de ir buscando el siguiente elemento que sea el mas alejado posible del centro del resultado.
 Eso mientras el numero de elementos sea menor a m.
+
+Rehacer el calculo de la diversidad, esta mal
