@@ -11,17 +11,17 @@ impl Environment {
     Environment { mdp_problem, solution }
   }
   pub fn swap(&mut self) -> MDPSolution {
-    let mut new_solution = self.solution.clone();
-    for i in 0..new_solution.len() {
+    let mut best_solution = self.solution.clone();
+    for i in 0..best_solution.len() {
       for j in 0..self.mdp_problem.states().len() as usize {
-        let mut actual_solution = new_solution.clone();
+        let mut actual_solution = best_solution.clone();
         let point = self.mdp_problem[j].clone();
         actual_solution.swap(point, i);
-        if actual_solution.calculate_diversity() > new_solution.calculate_diversity() {
-          new_solution = actual_solution.clone();
+        if actual_solution.calculate_diversity() > best_solution.calculate_diversity() {
+          best_solution = actual_solution.clone();
         }
       }
     }
-    new_solution
+    best_solution
   }
 }
