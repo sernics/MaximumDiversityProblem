@@ -1,15 +1,17 @@
 use crate::mdp_problem::MDPProblem;
 use crate::points::{Point, Point2d, Point3d, PointType};
 use std::ops::Index;
+use std::usize;
 
 pub struct MDPSolution {
   mdp_problem: MDPProblem,
-  solution: Vec<PointType>
+  solution: Vec<PointType>,
+  diversity: f32
 }
 
 impl MDPSolution {
   pub fn new(mdp_problem: MDPProblem) -> Self {
-    MDPSolution { mdp_problem, solution: vec![] }
+    MDPSolution { mdp_problem, solution: vec![], diversity: 0.0 }
   }
   pub fn len(&self) -> usize {
     self.solution.len()
@@ -21,7 +23,23 @@ impl MDPSolution {
     &self.mdp_problem
   }
   pub fn insert(&mut self, point: PointType) {
-    self.solution.push(point)
+    self.solution.push(point.clone());
+    for i in 0..self.solution.len() {
+      self.diversity += self.solution[i].distance_euclidean(&point);
+    }
+  }
+  pub fn insert_at(&mut self, point: PointType, index: usize) {
+    self.solution.insert(index, point.clone());
+    for i in 0..self.solution.len() {
+      self.diversity += self.solution[i].distance_euclidean(&point);
+    }
+  }
+  pub fn drop(&mut self, index: usize) {
+    let point = self.solution[index].clone();
+    self.solution.remove(index);
+    for i in 0..self.solution.len() {
+      self.diversity -= self.solution[i].distance_euclidean(&point);
+    }
   }
   pub fn centroids(&self) -> PointType {
     let mut values: Vec<f32> = vec![];
@@ -38,16 +56,7 @@ impl MDPSolution {
     }
   }
   pub fn calculate_diversity(&self) -> f32 {
-    let mut sum = 0.0;
-    for i in 0..self.solution.len() {
-      for j in (i + 1)..self.solution.len() {
-        sum += self.solution[i].distance_euclidean(&self.solution[j]);
-      }
-    }
-    sum
-  }
-  pub fn swap(&mut self, point: PointType, index: usize) {
-    self.solution[index] = point;
+    return self.diversity;
   }
 }
 
@@ -63,7 +72,7 @@ impl std::fmt::Display for MDPSolution {
 
 impl Clone for MDPSolution {
   fn clone(&self) -> Self {
-    MDPSolution { mdp_problem: self.mdp_problem.clone(), solution: self.solution.clone() }
+    MDPSolution { mdp_problem: self.mdp_problem.clone(), solution: self.solution.clone(), diversity: self.diversity }
   }
 }
 
