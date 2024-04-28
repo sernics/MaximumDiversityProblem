@@ -19,7 +19,7 @@ impl Environment {
         self.solution.insert_at(self.mdp_problem.states()[j].clone(), i);
         let new_diversity = self.solution.calculate_diversity();
         if new_diversity < actual_diversity {
-          self.solution.drop(self.solution.len());
+          self.solution.drop(self.solution.len() - 1);
           self.solution.insert_at(drop_point, i);
         }
       }
