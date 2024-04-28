@@ -37,6 +37,10 @@ impl MDPProblem {
       }
       selected_points.push(selected_point);
     }
+    // Print selected_points
+    for point in &selected_points {
+      println!("{}", point);
+    }
     selected_points
   }
 }

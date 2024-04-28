@@ -6,10 +6,12 @@ mod mdp_greedy;
 mod mdp_grasp;
 mod mdp;
 mod environment;
+mod mdp_tabu;
 
 use crate::mdp_problem::MDPProblem;
 use crate::mdp::MDP;
 use crate::mdp_solution::MDPSolution;
+use crate::mdp_tabu::MDPTabu;
 
 fn main() {
   let path = std::path::PathBuf::from(
@@ -28,4 +30,9 @@ fn main() {
   println!("\x1b[31mGrasp:\x1b[0m");
   println!("{}", result);
   println!("\x1b[31mDiversity grasp:\x1b[0m {}", result.calculate_diversity());
+  let mut tabu = MDPTabu::new(points.clone(), SIZE_M);
+  let result = tabu.execute();
+  println!("\x1b[31mTabu:\x1b[0m");
+  println!("{}", result);
+  println!("\x1b[31mDiversity tabu:\x1b[0m {}", result.calculate_diversity());
 }
