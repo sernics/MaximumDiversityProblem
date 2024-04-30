@@ -5,6 +5,7 @@ use crate::points::{Point2d, Point3d, PointType, Point};
 use crate::environment;
 
 use rand::seq::SliceRandom;
+use rand::Rng;
 
 pub struct MDPGrasp {
   mdp_solution: MDPSolution,
@@ -36,7 +37,9 @@ impl MDPGrasp {
       PointType::Point3d(_) => PointType::Point3d(Point3d::new(vec![0.0, 0.0, 0.0])),
     };
     let initial_points = self.mdp_solution.mdp_problem().select_k_next_points(&initial_centroid, K_VALUE);
-    self.mdp_solution.insert(initial_points.choose(&mut rand::thread_rng()).unwrap().clone());
+    let mut rng = rand::thread_rng();
+    let random_index = rng.gen_range(0..K_VALUE);
+    self.mdp_solution.insert(initial_points[random_index as usize].copy());
     while self.mdp_solution.len() < self.size_m as usize {
       let centroid = self.mdp_solution.centroids();
       let k_values = self.mdp_solution.mdp_problem().select_k_next_points(&centroid, K_VALUE);

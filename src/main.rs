@@ -19,7 +19,7 @@ fn main() {
   let points: MDPProblem = parse::parse_file(&path);
   println!("\x1b[31mPoints:\x1b[0m");
   println!("{}", points);
-  const SIZE_M: u8 = 3;
+  const SIZE_M: u8 = 4;
   let mut greedy = mdp_greedy::MDPGreedy::new(points.clone(), SIZE_M); // Clone the points variable
   let result = greedy.execute();
   println!("\x1b[31mGreedy:\x1b[0m");
