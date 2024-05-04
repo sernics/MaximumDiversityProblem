@@ -1,5 +1,5 @@
 use crate::{mdp_problem::MDPProblem, mdp_solution::MDPSolution, node::Node};
-use crate::points::PointType;
+use crate::points::{Point, PointType};
 
 use std::cell::{Cell, RefCell};
 
@@ -32,39 +32,57 @@ impl BranchAndBound {
   }
   pub fn branch_and_bound(&self, actual_node: Node, previous: Vec<PointType>) {
     let mut actual_nodes: Vec<Node> = Vec::new();
+    // Inserto todos los nodos posibles
     for i in 0..self.points.states().len() {
-      // Si el punto ya fue visitado, no se vuelve a visitar
-      if previous.contains(&self.points[i as usize]) {
-        continue;
+      // Añado los valores previos
+      let mut actual_result = MDPSolution::new(self.points.clone());
+      for point in previous.iter() {
+        actual_result.insert(point.clone());
       }
-      let mut point = self.initial_solution.clone();
-      point.drop(actual_node.m() as usize);
-      point.insert_at(self.points[i as usize].clone(), actual_node.m() as usize);
-      actual_nodes.push(Node::new(point, actual_node.m() + 1));
-    }
-    
-    if self.estrategy != "deep" {
-      actual_nodes.sort_by(|a, b| b.upper_bound().partial_cmp(&a.upper_bound()).unwrap());
+      actual_result.insert(self.points.states()[i].clone());
+      while actual_result.len() < self.max_m as usize {
+        let mut max_distance = 0.0;
+        let mut max_point : PointType = match self.points.states()[0] {
+          PointType::Point2d(_) => PointType::Point2d(Point::new(vec![0.0, 0.0])),
+          PointType::Point3d(_) => PointType::Point3d(Point::new(vec![0.0, 0.0, 0.0])),
+        };
+        for point in self.points.states() {
+          if !actual_result.contains(point) {
+            let mut distance = 0.0;
+            for i in 0..actual_result.len() {
+              distance += actual_result.get_solution()[i].distance_euclidean(point);
+            }
+            if distance > max_distance {
+              max_distance = distance;
+              max_point = point.clone();
+            }
+          }
+        }
+        actual_result.insert(max_point);  
+      }
+      if actual_result.calculate_diversity() > self.lower_bound.get() {
+        let node = Node::new(actual_result, actual_node.m() + 1);
+        actual_nodes.push(node);
+      }
     }
 
-    // Criterio de parada
-    if actual_node.m() == self.max_m {
-      // Queremos maximizar la diversidad
-      if actual_node.upper_bound() > self.lower_bound.get() {
-        self.solution.replace(actual_node.solution().clone());
-        self.lower_bound.set(actual_node.upper_bound());
+    if actual_node.m() == self.max_m - 2 {
+      if actual_nodes.len() > 0 {
+        // Buscar el mejor nodo
+        let best_diversity_node = actual_nodes.iter().max_by(|a, b| a.upper_bound().partial_cmp(&b.upper_bound()).unwrap()).unwrap();
+        if best_diversity_node.upper_bound() > self.lower_bound.get() {
+          self.lower_bound.set(best_diversity_node.upper_bound());
+          self.solution.replace(best_diversity_node.solution().clone());
+        }
       }
-      return;
     }
 
-    // Si la cota inferior del nodo actual es menor a la cota superior del mejor nodo encontrado hasta el momento
     for node in actual_nodes {
-      if node.upper_bound() > self.lower_bound.get() {
-        let mut new_previous = previous.clone();
-        new_previous.push(self.points[node.m() as usize].clone());
-        self.solution.replace(node.solution().clone());
-        self.branch_and_bound(node, new_previous);
+      let mut previous: Vec<PointType> = Vec::new();
+      for i in 0..actual_node.m() + 1 {
+        previous.push(node.solution().get_solution()[i as usize].clone());
       }
+      self.branch_and_bound(node, previous);
     }
   }
 }

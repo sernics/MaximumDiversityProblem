@@ -59,6 +59,9 @@ impl MDPSolution {
   pub fn calculate_diversity(&self) -> f32 {
     return self.diversity;
   }
+  pub fn get_solution(&self) -> Vec<PointType> {
+    self.solution.clone()
+  }
 }
 
 impl PartialEq for MDPSolution {
