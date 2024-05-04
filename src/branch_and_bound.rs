@@ -24,17 +24,29 @@ impl BranchAndBound {
       estrategy
     }
   }
+
   pub fn execute(&self) -> MDPSolution {
     let actual_node = Node::new(self.initial_solution.clone(), 0);
     let previous: Vec<PointType> = Vec::new();
     self.branch_and_bound(actual_node, previous);
     self.solution.borrow().clone()
   }
+
   pub fn branch_and_bound(&self, actual_node: Node, previous: Vec<PointType>) {
+    let actual_nodes: Vec<Node> = self.generate_actual_nodes(&actual_node, previous);
+
+    self.update_lower_bound(&actual_node, &actual_nodes);
+
+    if self.estrategy == "deep".to_string() {
+      self.in_deep(actual_node, actual_nodes);
+    } else {
+      println!("Estrategia no implementada")
+    }
+  }
+  
+  pub fn generate_actual_nodes(&self, actual_node: &Node, previous: Vec<PointType>) -> Vec<Node> {
     let mut actual_nodes: Vec<Node> = Vec::new();
-    // Inserto todos los nodos posibles
     for i in 0..self.points.states().len() {
-      // Añado los valores previos
       let mut actual_result = MDPSolution::new(self.points.clone());
       for point in previous.iter() {
         actual_result.insert(point.clone());
@@ -65,7 +77,10 @@ impl BranchAndBound {
         actual_nodes.push(node);
       }
     }
+    actual_nodes
+  }
 
+  pub fn update_lower_bound(&self, actual_node: &Node, actual_nodes: &Vec<Node>) {
     if actual_node.m() == self.max_m - 2 {
       if actual_nodes.len() > 0 {
         // Buscar el mejor nodo
@@ -76,7 +91,9 @@ impl BranchAndBound {
         }
       }
     }
+  }
 
+  pub fn in_deep(&self, actual_node: Node, actual_nodes: Vec<Node>) {
     for node in actual_nodes {
       let mut previous: Vec<PointType> = Vec::new();
       for i in 0..actual_node.m() + 1 {
