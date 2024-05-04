@@ -1,7 +1,4 @@
 use crate::{mdp_problem::MDPProblem, mdp_solution::MDPSolution, node::Node};
-use crate::mdp_greedy::MDPGreedy;
-use crate::mdp_grasp::MDPGrasp;
-use crate::points::Point;
 use crate::points::PointType;
 
 use std::cell::{Cell, RefCell};
@@ -28,8 +25,8 @@ impl BranchAndBound {
     }
   }
   pub fn execute(&self) -> MDPSolution {
-    let mut actual_node = Node::new(self.initial_solution.clone(), 0);
-    let mut previous: Vec<PointType> = Vec::new();
+    let actual_node = Node::new(self.initial_solution.clone(), 0);
+    let previous: Vec<PointType> = Vec::new();
     self.branch_and_bound(actual_node, previous);
     self.solution.borrow().clone()
   }
@@ -43,7 +40,6 @@ impl BranchAndBound {
       let mut point = self.initial_solution.clone();
       point.drop(actual_node.m() as usize);
       point.insert_at(self.points[i as usize].clone(), actual_node.m() as usize);
-      println!("Point {}: {}", i, point);
       actual_nodes.push(Node::new(point, actual_node.m() + 1));
     }
     
@@ -60,10 +56,13 @@ impl BranchAndBound {
       }
       return;
     }
+
+    // Si la cota inferior del nodo actual es menor a la cota superior del mejor nodo encontrado hasta el momento
     for node in actual_nodes {
       if node.upper_bound() > self.lower_bound.get() {
         let mut new_previous = previous.clone();
         new_previous.push(self.points[node.m() as usize].clone());
+        self.solution.replace(node.solution().clone());
         self.branch_and_bound(node, new_previous);
       }
     }

@@ -14,7 +14,6 @@ use crate::mdp_problem::MDPProblem;
 use crate::mdp::MDP;
 use crate::mdp_solution::MDPSolution;
 use crate::mdp_tabu::MDPTabu;
-use crate::points::PointType;
 use crate::branch_and_bound::BranchAndBound;
 
 fn main() {
@@ -39,8 +38,9 @@ fn main() {
   println!("\x1b[31mTabu:\x1b[0m");
   println!("{}", result);
   println!("\x1b[31mDiversity tabu:\x1b[0m {}", result.calculate_diversity());
-  let mut branch_and_bound = BranchAndBound::new(greedy_result.clone(), SIZE_M, "deep".to_string());
+  let branch_and_bound = BranchAndBound::new(greedy_result.clone(), SIZE_M, "deep".to_string());
   let branch_and_bound_result = branch_and_bound.execute();
   println!("\x1b[31mBranch and bound:\x1b[0m");
   println!("{}", branch_and_bound_result);
+  println!("\x1b[31mDiversity branch and bound:\x1b[0m {}", branch_and_bound_result.calculate_diversity());
 }

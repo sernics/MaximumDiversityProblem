@@ -1,0 +1,373 @@
+[31mPoints:[0m
+MDPProblem: states = [
+Point3d: x = 0.46, y = 4.48, z = 6.17
+Point3d: x = 6.32, y = 2.2, z = 4.95
+Point3d: x = 1.48, y = 2.7, z = 3.63
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 1.71, y = 1.95, z = 9.22
+Point3d: x = 2.48, y = 7.08, z = 4.37
+Point3d: x = 5.17, y = 1.39, z = 0.91
+Point3d: x = 2.15, y = 2.48, z = 6.87
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 8.67, y = 9.58, z = 4.39
+Point3d: x = 6.65, y = 9.45, z = 1.02
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 8.42, y = 9.05, z = 4.39
+Point3d: x = 9.47, y = 3.56, z = 1.83
+Point3d: x = 0.98, y = 6.04, z = 2.47
+], points = 3
+[31mGreedy:[0m
+MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 9.47, y = 3.56, z = 1.83
+]
+[31mDiversity greedy:[0m 58.693417
+[31mGrasp:[0m
+MDPSolution: solution = [
+Point3d: x = 9.47, y = 3.56, z = 1.83
+Point3d: x = 0.98, y = 6.04, z = 2.47
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 1.71, y = 1.95, z = 9.22
+]
+[31mDiversity grasp:[0m 57.53092
+[31mTabu:[0m
+MDPSolution: solution = [
+Point3d: x = 9.47, y = 3.56, z = 1.83
+Point3d: x = 0.98, y = 6.04, z = 2.47
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 1.71, y = 1.95, z = 9.22
+]
+[31mDiversity tabu:[0m 57.53091
+Point 0: MDPSolution: solution = [
+Point3d: x = 0.46, y = 4.48, z = 6.17
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 48.1623
+Point 1: MDPSolution: solution = [
+Point3d: x = 6.32, y = 2.2, z = 4.95
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 48.122803
+Point 2: MDPSolution: solution = [
+Point3d: x = 1.48, y = 2.7, z = 3.63
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 45.37887
+Point 3: MDPSolution: solution = [
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 46.93284
+Point 4: MDPSolution: solution = [
+Point3d: x = 1.71, y = 1.95, z = 9.22
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 54.014503
+Point 5: MDPSolution: solution = [
+Point3d: x = 2.48, y = 7.08, z = 4.37
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 45.959763
+Point 6: MDPSolution: solution = [
+Point3d: x = 5.17, y = 1.39, z = 0.91
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 48.266373
+Point 7: MDPSolution: solution = [
+Point3d: x = 2.15, y = 2.48, z = 6.87
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 48.69392
+Point 8: MDPSolution: solution = [
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 46.634266
+Point 9: MDPSolution: solution = [
+Point3d: x = 8.67, y = 9.58, z = 4.39
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 54.65865
+Point 10: MDPSolution: solution = [
+Point3d: x = 6.65, y = 9.45, z = 1.02
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 51.963158
+Point 11: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 58.69342
+Point 12: MDPSolution: solution = [
+Point3d: x = 8.42, y = 9.05, z = 4.39
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 53.40926
+Point 13: MDPSolution: solution = [
+Point3d: x = 9.47, y = 3.56, z = 1.83
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 48.36409
+Point 14: MDPSolution: solution = [
+Point3d: x = 0.98, y = 6.04, z = 2.47
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 45.94918
+Point 0: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 0.46, y = 4.48, z = 6.17
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 53.74916
+Point 2: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 1.48, y = 2.7, z = 3.63
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 53.305595
+Point 3: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 46.61543
+Point 4: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 1.71, y = 1.95, z = 9.22
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 59.277878
+Point 5: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 2.48, y = 7.08, z = 4.37
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 46.34442
+Point 6: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 5.17, y = 1.39, z = 0.91
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 52.225
+Point 7: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 2.15, y = 2.48, z = 6.87
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 54.61697
+Point 8: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 58.693417
+Point 9: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 8.67, y = 9.58, z = 4.39
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 43.647167
+Point 10: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 6.65, y = 9.45, z = 1.02
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 45.811604
+Point 11: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 44.206085
+Point 12: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 8.42, y = 9.05, z = 4.39
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 43.21701
+Point 13: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 9.47, y = 3.56, z = 1.83
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 45.039227
+Point 14: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 0.98, y = 6.04, z = 2.47
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 49.686176
+Point 0: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 0.46, y = 4.48, z = 6.17
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 55.800583
+Point 3: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 58.693417
+Point 4: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 1.71, y = 1.95, z = 9.22
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 58.72873
+Point 5: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 2.48, y = 7.08, z = 4.37
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 53.74037
+Point 6: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 5.17, y = 1.39, z = 0.91
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 52.743492
+Point 7: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 2.15, y = 2.48, z = 6.87
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 54.094162
+Point 8: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 53.954624
+Point 9: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 8.67, y = 9.58, z = 4.39
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 51.724476
+Point 10: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 6.65, y = 9.45, z = 1.02
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 54.70059
+Point 11: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 51.843857
+Point 12: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 8.42, y = 9.05, z = 4.39
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 50.99465
+Point 13: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 9.47, y = 3.56, z = 1.83
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 48.410255
+Point 14: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 0.98, y = 6.04, z = 2.47
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 55.573936
+Point 0: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 0.46, y = 4.48, z = 6.17
+], 51.578133
+Point 4: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 1.71, y = 1.95, z = 9.22
+], 57.54298
+Point 5: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 2.48, y = 7.08, z = 4.37
+], 48.466713
+Point 6: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 5.17, y = 1.39, z = 0.91
+], 57.04866
+Point 7: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 2.15, y = 2.48, z = 6.87
+], 53.060143
+Point 8: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 0.3, y = 0.92, z = 4.23
+], 52.668327
+Point 9: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 8.67, y = 9.58, z = 4.39
+], 52.916107
+Point 10: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 6.65, y = 9.45, z = 1.02
+], 54.153828
+Point 11: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 9.88, y = 9.88, z = 6.26
+], 53.565006
+Point 12: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 8.42, y = 9.05, z = 4.39
+], 52.375298
+Point 13: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 9.47, y = 3.56, z = 1.83
+], 58.693417
+Point 14: MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 1.15, y = 9.21, z = 3.11
+Point3d: x = 0.98, y = 6.04, z = 2.47
+], 50.08939
+[31mBranch and bound:[0m
+MDPSolution: solution = [
+Point3d: x = 9.88, y = 9.88, z = 6.26
+Point3d: x = 0.3, y = 0.92, z = 4.23
+Point3d: x = 1.71, y = 1.95, z = 9.22
+Point3d: x = 9.47, y = 3.56, z = 1.83
+]
