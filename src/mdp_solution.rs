@@ -3,6 +3,7 @@ use crate::points::{Point, Point2d, Point3d, PointType};
 use std::ops::Index;
 use std::usize;
 
+#[derive(Clone)]
 pub struct MDPSolution {
   mdp_problem: MDPProblem,
   solution: Vec<PointType>,
@@ -60,6 +61,26 @@ impl MDPSolution {
   }
 }
 
+impl PartialEq for MDPSolution {
+  fn eq(&self, other: &Self) -> bool {
+    self.diversity == other.diversity
+  }
+}
+
+impl PartialOrd for MDPSolution {
+  fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
+    Some(self.diversity.partial_cmp(&other.diversity).unwrap())
+  }
+}
+
+impl Ord for MDPSolution {
+  fn cmp(&self, other: &Self) -> std::cmp::Ordering {
+    self.diversity.partial_cmp(&other.diversity).unwrap().reverse()
+  }
+}
+
+impl Eq for MDPSolution {}
+
 impl std::fmt::Display for MDPSolution {
   fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
     writeln!(f, "MDPSolution: solution = [")?;
@@ -67,12 +88,6 @@ impl std::fmt::Display for MDPSolution {
       writeln!(f, "{}", point)?;
     }
     write!(f, "]")
-  }
-}
-
-impl Clone for MDPSolution {
-  fn clone(&self) -> Self {
-    MDPSolution { mdp_problem: self.mdp_problem.clone(), solution: self.solution.clone(), diversity: self.diversity }
   }
 }
 
