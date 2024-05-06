@@ -28,6 +28,6 @@ pub fn execute() {
       result_print += "\n";
     }
   }
-  let print_path = PathBuf::from("results/modi_greedy_bb.csv");
+  let print_path = PathBuf::from("results/orden_greedy_bb.csv");
   std::fs::write(print_path, result_print).expect("Unable to write file");
 }

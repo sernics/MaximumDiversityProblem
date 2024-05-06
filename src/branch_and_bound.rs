@@ -2,6 +2,7 @@ use crate::{mdp_problem::MDPProblem, mdp_solution::MDPSolution, node::Node};
 use crate::points::{Point, PointType};
 
 use std::cell::{Cell, RefCell};
+use std::collections::BTreeSet;
 
 pub struct BranchAndBound {
   lower_bound: Cell<f32>,
@@ -9,7 +10,8 @@ pub struct BranchAndBound {
   initial_solution: MDPSolution,
   solution: RefCell<MDPSolution>,
   max_m: u8,
-  estrategy: String
+  estrategy: String,
+  minimum_set: RefCell<BTreeSet<Node>>
 }
 
 impl BranchAndBound {
@@ -21,14 +23,19 @@ impl BranchAndBound {
       initial_solution: solution.clone(),
       solution: RefCell::new(solution.clone()),
       max_m: size_m,
-      estrategy
+      estrategy,
+      minimum_set: RefCell::new(BTreeSet::new())
     }
   }
 
   pub fn execute(&self) -> MDPSolution {
     let actual_node = Node::new(self.initial_solution.clone(), 0);
     let previous: Vec<PointType> = Vec::new();
-    self.branch_and_bound(actual_node, previous);
+    if self.estrategy == "deep".to_string() {
+      self.branch_and_bound(actual_node, previous);
+    } else {
+      self.branch_and_bound_orden(actual_node, previous);
+    }
     self.solution.borrow().clone()
   }
 
@@ -37,10 +44,27 @@ impl BranchAndBound {
 
     self.update_lower_bound(&actual_node, &actual_nodes);
 
-    if self.estrategy == "deep".to_string() {
-      self.in_deep(actual_node, actual_nodes);
-    } else {
-      self.in_orden(actual_node, actual_nodes);
+    self.in_deep(actual_node, actual_nodes);
+  }
+
+  pub fn branch_and_bound_orden(&self, actual_node: Node, previous: Vec<PointType>) {
+    let actual_nodes: Vec<Node> = self.generate_actual_nodes(&actual_node, previous);
+
+    if self.minimum_set.borrow().len() == 0 {
+      return;
+    }
+    for i in 0..actual_nodes.len() {
+      self.minimum_set.borrow_mut().insert(actual_nodes[i].clone());
+    }
+
+    self.update_lower_bound(&actual_node, &actual_nodes);
+
+    for node in self.minimum_set.borrow().iter() {
+      let mut previous: Vec<PointType> = Vec::new();
+      for i in 0..actual_node.m() + 1 {
+        previous.push(node.solution().get_solution()[i as usize].clone());
+      }
+      self.branch_and_bound_orden(node.clone(), previous);
     }
   }
   
@@ -94,16 +118,6 @@ impl BranchAndBound {
   }
 
   pub fn in_deep(&self, actual_node: Node, actual_nodes: Vec<Node>) {
-    for node in actual_nodes {
-      let mut previous: Vec<PointType> = Vec::new();
-      for i in 0..actual_node.m() + 1 {
-        previous.push(node.solution().get_solution()[i as usize].clone());
-      }
-      self.branch_and_bound(node, previous);
-    }
-  }
-
-  pub fn in_orden(&self, actual_node: Node, actual_nodes: Vec<Node>) {
     for node in actual_nodes {
       let mut previous: Vec<PointType> = Vec::new();
       for i in 0..actual_node.m() + 1 {
