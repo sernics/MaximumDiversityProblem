@@ -18,7 +18,7 @@ pub fn execute() {
       let points = parse_file(&path);
       for m in m_size.iter() {
         let mut greedy = MDPGreedy::new(points.clone(), *m);
-        let bb = BranchAndBound::new(greedy.execute().clone(), *m, "deep".to_string());
+        let bb = BranchAndBound::new(greedy.execute().clone(), *m, "orden".to_string());
         let start = std::time::Instant::now();  
         let result = bb.execute();
         let duration = start.elapsed();

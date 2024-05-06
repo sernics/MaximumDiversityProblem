@@ -59,13 +59,7 @@ impl BranchAndBound {
 
     self.update_lower_bound(&actual_node, &actual_nodes);
 
-    for node in self.minimum_set.borrow().iter() {
-      let mut previous: Vec<PointType> = Vec::new();
-      for i in 0..actual_node.m() + 1 {
-        previous.push(node.solution().get_solution()[i as usize].clone());
-      }
-      self.branch_and_bound_orden(node.clone(), previous);
-    }
+    self.in_orden(actual_node, actual_nodes);
   }
   
   pub fn generate_actual_nodes(&self, actual_node: &Node, previous: Vec<PointType>) -> Vec<Node> {
@@ -124,6 +118,16 @@ impl BranchAndBound {
         previous.push(node.solution().get_solution()[i as usize].clone());
       }
       self.branch_and_bound(node, previous);
+    }
+  }
+
+  pub fn in_orden(&self, actual_node: Node, actual_nodes: Vec<Node>) {
+    for node in actual_nodes {
+      let mut previous: Vec<PointType> = Vec::new();
+      for i in 0..actual_node.m() + 1 {
+        previous.push(node.solution().get_solution()[i as usize].clone());
+      }
+      self.branch_and_bound_orden(node, previous);
     }
   }
 }
