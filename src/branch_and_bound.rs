@@ -19,7 +19,7 @@ impl BranchAndBound {
       lower_bound: Cell::new(inferior_limit), 
       points: solution.mdp_problem().clone(), 
       initial_solution: solution.clone(),
-      solution: RefCell::new(MDPSolution::new(solution.mdp_problem().clone())),
+      solution: RefCell::new(solution.clone()),
       max_m: size_m,
       estrategy
     }
@@ -40,7 +40,7 @@ impl BranchAndBound {
     if self.estrategy == "deep".to_string() {
       self.in_deep(actual_node, actual_nodes);
     } else {
-      println!("Estrategia no implementada")
+      self.in_orden(actual_node, actual_nodes);
     }
   }
   
@@ -94,6 +94,16 @@ impl BranchAndBound {
   }
 
   pub fn in_deep(&self, actual_node: Node, actual_nodes: Vec<Node>) {
+    for node in actual_nodes {
+      let mut previous: Vec<PointType> = Vec::new();
+      for i in 0..actual_node.m() + 1 {
+        previous.push(node.solution().get_solution()[i as usize].clone());
+      }
+      self.branch_and_bound(node, previous);
+    }
+  }
+
+  pub fn in_orden(&self, actual_node: Node, actual_nodes: Vec<Node>) {
     for node in actual_nodes {
       let mut previous: Vec<PointType> = Vec::new();
       for i in 0..actual_node.m() + 1 {
